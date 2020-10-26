@@ -7,6 +7,8 @@ public class Observer : MonoBehaviour
     public Transform player;
     bool m_IsPlayerInRange;
     public GameEnding gameEnding;
+
+    public Material light_Cone;
   
 
     private void OnTriggerEnter(Collider other)
@@ -43,9 +45,14 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    gameEnding.CaughtPlayer();
-                }
+                    //gameEnding.CaughtPlayer();
+                    light_Cone.SetColor("_EmissionColor", Color.red);
+                    print("Ahí te quería agarrar, puerco");
+
+                }                
+
             }
+            
         }
     }
 

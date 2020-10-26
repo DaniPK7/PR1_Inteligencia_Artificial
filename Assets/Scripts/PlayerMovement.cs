@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool Sprint;
     float normalSpeed;
-    float sprintSpeed = 1.5f;
+
+    public SphereCollider detectionRange;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +43,16 @@ public class PlayerMovement : MonoBehaviour
         bool isWalking = hasHorizontalInput || hasVerticalInput;
 
         //Sprint
-        if (Input.GetKey(KeyCode.LeftShift)) { Sprint = true; m_Animator.speed = 1.5f * normalSpeed; }            
-        else { Sprint = false; m_Animator.speed = normalSpeed; }        
-        
+        if (Input.GetKey(KeyCode.LeftShift)) 
+        {
+            Sprint = true; 
+            m_Animator.speed = 1.5f * normalSpeed;
+
+            detectionRange.radius = 3.5f;
+        }            
+        else { Sprint = false; m_Animator.speed = normalSpeed; detectionRange.radius = 1.5f;
+        }
+
         m_Animator.SetBool("IsWalking", isWalking);
         if (isWalking)
         {
