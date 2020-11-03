@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 5032036961809613975}
   - component: {fileID: 636357419385455479}
   - component: {fileID: 8932889115569882209}
+  - component: {fileID: 4381735459133453961}
   - component: {fileID: 7025608424069049946}
   - component: {fileID: 7098948175216090445}
   - component: {fileID: 4971980182417558800}
@@ -522,6 +523,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4381735459133453961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5032036961819113297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b03db27efa1e24eb042d90057aed86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {fileID: 5032036961818946417}
+  targetPosition: {fileID: 0}
 --- !u!195 &7025608424069049946
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -529,7 +544,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5032036961819113297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 1.5
@@ -560,6 +575,8 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  Player: {fileID: 0}
+  chasePlayer: 0
 --- !u!82 &4971980182417558800
 AudioSource:
   m_ObjectHideFlags: 0
