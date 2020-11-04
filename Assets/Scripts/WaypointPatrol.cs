@@ -5,37 +5,32 @@ using UnityEngine.AI;
 
 public class WaypointPatrol : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    public Transform[] waypoints;
+    public Vector3 startpoint;
 
     public GameObject Player;
 
-    int m_CurrentWaypointIndex;
+    public Grid grid;
 
     public bool chasePlayer;
 
     void Start()
     {
-        navMeshAgent.SetDestination(waypoints[0].position);
+        startpoint=GetComponent<Transform>().position;
         chasePlayer = false;
+        
     }
 
     void Update()
     {
         if (chasePlayer)
         {
-            navMeshAgent.SetDestination(Player.transform.position);
+            grid.Awake();
         }
 
         else
         {
-            if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
-            {
-                m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            }
+            
         }
-
     }
     private void OnTriggerStay(Collider other)
     {
@@ -44,8 +39,6 @@ public class WaypointPatrol : MonoBehaviour
             print("Dentro de rango");
             chasePlayer = true;
         }
-
-
     }
 
     private void OnTriggerExit(Collider other)
