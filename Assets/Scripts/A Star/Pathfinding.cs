@@ -9,13 +9,17 @@ public class Pathfinding : MonoBehaviour
     public Transform startPosition;
     public Transform targetPosition;
 
-    private void Awake()
+    private WaypointPatrol waypoint;
+
+    public void Start()
     {
         grid =gameManager.GetComponent<Grid>();
+        waypoint = gameObject.GetComponent<WaypointPatrol>();
     }
     private void Update()
     {
-        FindPath(startPosition.position, targetPosition.position);
+        if(targetPosition!=null)
+            FindPath(startPosition.position, targetPosition.position);
     }
 
     private void FindPath(Vector3 a_startPosition, Vector3 a_targetPosition)
@@ -83,6 +87,8 @@ public class Pathfinding : MonoBehaviour
         }
         FinalPath.Reverse();
         grid.finalPath = FinalPath;
+        waypoint.finalPath = FinalPath;
+        
     }
 
     private int GetManhattenDistance(Node nodeA, Node nodeB)

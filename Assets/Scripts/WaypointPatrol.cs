@@ -5,39 +5,85 @@ using UnityEngine.AI;
 
 public class WaypointPatrol : MonoBehaviour
 {
-    public Vector3 startpoint;
+    public Transform startpoint;
 
     public GameObject Player;
 
-    public Grid grid;
-
     public bool chasePlayer;
+
+    public bool goToStart;
+
+    private Pathfinding pathfinding;
+
+    public List<Node> finalPath;
+
+    private Vector3 nodePosition;
+
+    public int currentPosition;
+
+    private float speed = 1f;
 
     void Start()
     {
-        startpoint=GetComponent<Transform>().position;
-        chasePlayer = false;
         
+        currentPosition = 0;
+        startpoint=GetComponent<Transform>();
+        pathfinding = GetComponent<Pathfinding>();
+        chasePlayer = false;
+        goToStart = false;
     }
 
     void Update()
     {
-        if (chasePlayer)
+        if (chasePlayer && finalPath!=null)
         {
-            grid.Awake();
-        }
-
-        else
-        {
+            if (currentPosition >= finalPath.Count)
+                currentPosition = 0;
+            //stops one node before the final position
+            if (finalPath[currentPosition] != finalPath[finalPath.Count - 2])
+            {
+                nodePosition = finalPath[currentPosition].position;
+                Walk();
+            }
             
         }
+        else if(goToStart){
+            //return to the start point
+            if (finalPath[currentPosition] != finalPath[finalPath.Count - 1])
+            {
+                nodePosition = finalPath[currentPosition].position;
+                Walk();
+            }
+            else
+            {
+                goToStart = false;
+            }
+        }
     }
+
+   private void Walk()
+    {
+        // rotate towards the target
+        transform.forward = Vector3.RotateTowards(transform.forward, nodePosition - transform.position, speed * Time.deltaTime, 0.0f);
+
+        // move towards the target
+        transform.position = Vector3.MoveTowards(transform.position, nodePosition, speed * Time.deltaTime);
+
+        if (transform.position == nodePosition)
+        {
+            currentPosition++;
+            nodePosition = finalPath[currentPosition].position;
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("chaseRange"))
         {
             print("Dentro de rango");
+            goToStart = false;
             chasePlayer = true;
+            pathfinding.targetPosition = other.gameObject.transform;
         }
     }
 
@@ -45,8 +91,12 @@ public class WaypointPatrol : MonoBehaviour
     {
         if (other.CompareTag("chaseRange"))
         {
+            currentPosition = 0;
             print("Saliendo de rango");
             chasePlayer = false;
+            goToStart = true;
+            pathfinding.targetPosition = startpoint;
+
         }
     }
 

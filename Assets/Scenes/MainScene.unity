@@ -629,7 +629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d538f66c26abc4ca34f66dc3611349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 1973072838}
   wallMask:
     serializedVersion: 2
     m_Bits: 512
@@ -9281,7 +9280,7 @@ PrefabInstance:
         type: 3}
       propertyPath: targetPosition
       value: 
-      objectReference: {fileID: 1973072838}
+      objectReference: {fileID: 0}
     - target: {fileID: 4381735459133453961, guid: ddde600833db4314b878290e669071be,
         type: 3}
       propertyPath: gameManager
@@ -9297,10 +9296,20 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5032036961805515351, guid: ddde600833db4314b878290e669071be,
+        type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032036961805515351, guid: ddde600833db4314b878290e669071be,
+        type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5032036961818946417, guid: ddde600833db4314b878290e669071be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.13
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5032036961818946417, guid: ddde600833db4314b878290e669071be,
         type: 3}
@@ -9310,7 +9319,7 @@ PrefabInstance:
     - target: {fileID: 5032036961818946417, guid: ddde600833db4314b878290e669071be,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.05
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 5032036961818946417, guid: ddde600833db4314b878290e669071be,
         type: 3}
@@ -9391,7 +9400,17 @@ PrefabInstance:
         type: 3}
       propertyPath: grid
       value: 
-      objectReference: {fileID: 818769703}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098948175216090445, guid: ddde600833db4314b878290e669071be,
+        type: 3}
+      propertyPath: chasePlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932889115569882209, guid: ddde600833db4314b878290e669071be,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddde600833db4314b878290e669071be, type: 3}
 --- !u!4 &6523618807488359320 stripped

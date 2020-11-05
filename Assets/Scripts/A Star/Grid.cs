@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public Transform startPosition;
+    
     public LayerMask wallMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
-    public void Awake()
+    public void Start()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -63,47 +63,7 @@ public class Grid : MonoBehaviour
         List<Node> neighboringNodes = new List<Node>();
         int xCheck;
         int yCheck;
-
-        xCheck = a_Node.gridX + 1;
-        yCheck = a_Node.gridY;
-        if(xCheck>=0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-
-        xCheck = a_Node.gridX - 1;
-        yCheck = a_Node.gridY;
-        if (xCheck >= 0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-
-        xCheck = a_Node.gridX;
-        yCheck = a_Node.gridY + 1;
-        if (xCheck >= 0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-
-        xCheck = a_Node.gridX;
-        yCheck = a_Node.gridY-1;
-        if (xCheck >= 0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-        /*
+        
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -125,8 +85,6 @@ public class Grid : MonoBehaviour
 
             }
         }
-        */
-
         return neighboringNodes;
     }
 
