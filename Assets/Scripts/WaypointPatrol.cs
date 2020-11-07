@@ -16,6 +16,10 @@ public class WaypointPatrol : MonoBehaviour
     private Pathfinding pathfinding;
 
     public List<Node> finalPath;
+    
+    //[SerializeField]
+    public List<Transform> patrolPoints;
+    int currentIndex;
 
     private Vector3 nodePosition;
 
@@ -25,16 +29,24 @@ public class WaypointPatrol : MonoBehaviour
 
     void Start()
     {
-        
+
         currentPosition = 0;
-        startpoint=GetComponent<Transform>();
+        startpoint = GetComponent<Transform>();
         pathfinding = GetComponent<Pathfinding>();
         chasePlayer = false;
-        goToStart = false;
+        goToStart = true;
+
+        if (patrolPoints != null && patrolPoints.Count >= 2)
+        {
+            currentIndex = 0;
+
+            pathfinding.targetPosition = patrolPoints[currentIndex];
+        }
     }
 
     void Update()
     {
+        
         if (chasePlayer && finalPath!=null)
         {
             if (currentPosition >= finalPath.Count)
@@ -47,8 +59,18 @@ public class WaypointPatrol : MonoBehaviour
             }
             
         }
+
         else if(goToStart){
             //return to the start point
+
+            print("target: " + pathfinding.targetPosition.name);
+            print("n: " + patrolPoints.Count);
+
+            //if(Vector3.Distance(finalPath[currentPosition].position, patrol1.transform.position) < 1.5f) { pathfinding.targetPosition = patrol2.transform; }
+            //if(Vector3.Distance(finalPath[currentPosition].position, patrol2.transform.position) < 1.5f) { pathfinding.targetPosition = patrol1.transform; }
+
+            SetWayPoint();
+
             if (finalPath[currentPosition] != finalPath[finalPath.Count - 1])
             {
                 nodePosition = finalPath[currentPosition].position;
@@ -76,6 +98,16 @@ public class WaypointPatrol : MonoBehaviour
         }
     }
 
+    private void SetWayPoint()
+    {
+        if (Vector3.Distance(finalPath[currentPosition].position, patrolPoints[currentIndex ].position) < 1)
+        {
+            if (currentIndex + 1 > patrolPoints.Count-1) { currentIndex = 0; }
+            else { currentIndex += 1; }
+            pathfinding.targetPosition = patrolPoints[currentIndex];
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("chaseRange"))
@@ -95,7 +127,7 @@ public class WaypointPatrol : MonoBehaviour
             print("Saliendo de rango");
             chasePlayer = false;
             goToStart = true;
-            pathfinding.targetPosition = startpoint;
+            pathfinding.targetPosition = patrolPoints[currentIndex];
 
         }
     }
