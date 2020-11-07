@@ -78,12 +78,7 @@ public class WaypointPatrol : MonoBehaviour
         {
             //return to the start point
 
-            //print("target: " + pathfinding.targetPosition.name);
-            //print("n: " + patrolPoints.Count);
-
-            //if(Vector3.Distance(finalPath[currentPosition].position, patrol1.transform.position) < 1.5f) { pathfinding.targetPosition = patrol2.transform; }
-            //if(Vector3.Distance(finalPath[currentPosition].position, patrol2.transform.position) < 1.5f) { pathfinding.targetPosition = patrol1.transform; }
-
+            
             SetWayPoint();
 
             if (finalPath[currentPosition] != finalPath[finalPath.Count - 1])
