@@ -106,7 +106,7 @@ public class Grid : MonoBehaviour
                 if (finalPath != null && finalPath.Contains(node))
                 {
                     Gizmos.color = Color.red;
-                    Debug.Log("Ha llegado chacho");
+                    //Debug.Log("Ha llegado chacho");
                 }
                 
                 Gizmos.DrawCube(node.position, Vector3.one * (nodeDiameter - Distance));

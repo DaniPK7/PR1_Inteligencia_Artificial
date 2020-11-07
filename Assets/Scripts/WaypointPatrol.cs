@@ -25,7 +25,10 @@ public class WaypointPatrol : MonoBehaviour
 
     public int currentPosition;
 
-    private float speed = 1f;
+    public GlobalShit globalSC;
+
+    private float speed;
+    
 
     void Start()
     {
@@ -33,6 +36,8 @@ public class WaypointPatrol : MonoBehaviour
         currentPosition = 0;
         startpoint = GetComponent<Transform>();
         pathfinding = GetComponent<Pathfinding>();
+
+        
         chasePlayer = false;
         goToStart = true;
 
@@ -46,7 +51,16 @@ public class WaypointPatrol : MonoBehaviour
 
     void Update()
     {
-        
+        speed = globalSC.ghostSpeed;
+        //print("v: "+ speed);
+
+        if (globalSC.playerSeen && !chasePlayer) 
+        { 
+            pathfinding.targetPosition = globalSC.gargyole;
+
+        } //Si una gargola ve al jugador, los fantasman van a esa posicion
+        else if (!globalSC.playerSeen && !chasePlayer) { goToStart=true; pathfinding.targetPosition = patrolPoints[currentIndex]; } //
+
         if (chasePlayer && finalPath!=null)
         {
             if (currentPosition >= finalPath.Count)
@@ -60,11 +74,12 @@ public class WaypointPatrol : MonoBehaviour
             
         }
 
-        else if(goToStart){
+        else if(goToStart)
+        {
             //return to the start point
 
-            print("target: " + pathfinding.targetPosition.name);
-            print("n: " + patrolPoints.Count);
+            //print("target: " + pathfinding.targetPosition.name);
+            //print("n: " + patrolPoints.Count);
 
             //if(Vector3.Distance(finalPath[currentPosition].position, patrol1.transform.position) < 1.5f) { pathfinding.targetPosition = patrol2.transform; }
             //if(Vector3.Distance(finalPath[currentPosition].position, patrol2.transform.position) < 1.5f) { pathfinding.targetPosition = patrol1.transform; }
@@ -107,7 +122,7 @@ public class WaypointPatrol : MonoBehaviour
             pathfinding.targetPosition = patrolPoints[currentIndex];
         }
     }
-
+   
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("chaseRange"))

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Observer : MonoBehaviour
+public class Observer_Speed : MonoBehaviour
 {
     public Transform player;
     bool m_IsPlayerInRange;
     public GameEnding gameEnding;
+    public GlobalShit globalSC;
+    public Transform wpTrans;
 
-    public Material light_Cone;
-  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +29,7 @@ public class Observer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -45,16 +45,13 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    //gameEnding.CaughtPlayer();
-                    light_Cone.SetColor("_EmissionColor", Color.red);
-                    //print("Ahí te quería agarrar, puerco");
+                    globalSC.SpeedChange(wpTrans);
 
-                }                
-
+                }
             }
-            
         }
     }
+    
+
 
 }
-
