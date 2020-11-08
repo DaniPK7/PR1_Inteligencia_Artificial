@@ -45,9 +45,9 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    //gameEnding.CaughtPlayer();
-                    light_Cone.SetColor("_EmissionColor", Color.red);
-                    //print("Ahí te quería agarrar, puerco");
+                    gameEnding.CaughtPlayer();
+                    //light_Cone.SetColor("_EmissionColor", Color.red);
+                    print("Ahí te quería agarrar, puerco");
 
                 }                
 

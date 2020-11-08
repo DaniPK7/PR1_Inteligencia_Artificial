@@ -42,9 +42,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 2
+  m_Radius: 1.01
+  m_Height: 1.47
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.95}
 --- !u!114 &2725646638712605747
 MonoBehaviour:
@@ -60,3 +60,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameEnding: {fileID: 0}
+  light_Cone: {fileID: 0}

@@ -535,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b03db27efa1e24eb042d90057aed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   startPosition: {fileID: 5032036961818946417}
   targetPosition: {fileID: 0}
 --- !u!195 &7025608424069049946
@@ -571,12 +572,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c76d193427528e4b861dc38420b038a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 7025608424069049946}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  startpoint: {fileID: 0}
   Player: {fileID: 0}
   chasePlayer: 0
+  goToStart: 0
+  patrolPoints: []
+  currentPosition: 0
+  globalSC: {fileID: 0}
 --- !u!82 &4971980182417558800
 AudioSource:
   m_ObjectHideFlags: 0
@@ -974,12 +976,12 @@ PrefabInstance:
     - target: {fileID: 1454527993040000638, guid: dacf89c8d72d8044aa4914c1fbf9d2af,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1454527993040000638, guid: dacf89c8d72d8044aa4914c1fbf9d2af,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: 1454527993040000638, guid: dacf89c8d72d8044aa4914c1fbf9d2af,
         type: 3}
