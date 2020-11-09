@@ -8,7 +8,7 @@ public class Observer : MonoBehaviour
     bool m_IsPlayerInRange;
     public GameEnding gameEnding;
 
-    public Material light_Cone;
+    //public Material light_Cone;
   
 
     private void OnTriggerEnter(Collider other)
@@ -16,6 +16,10 @@ public class Observer : MonoBehaviour
         if (other.transform == player)
         {
             m_IsPlayerInRange = true;
+            gameEnding.CaughtPlayer();
+
+            print("Cazador: "+this.name );
+          
         }
 
     }
@@ -35,7 +39,7 @@ public class Observer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_IsPlayerInRange)
+        /*if (m_IsPlayerInRange)
         {
             Vector3 direction = player.position - transform.position + Vector3.up;
             Ray ray = new Ray(transform.position, direction);
@@ -53,7 +57,7 @@ public class Observer : MonoBehaviour
 
             }
             
-        }
+        }*/
     }
 
 }

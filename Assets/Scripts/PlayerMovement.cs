@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+   
     public float turnSpeed = 20f;
 
     Animator m_Animator;
@@ -60,10 +61,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_AudioSource.Play();
             }
+
+            if (Sprint) 
+            {
+                m_AudioSource.volume = 1;
+            }
+            else { m_AudioSource.volume = 0.4f; }
         }
         else
         {
             m_AudioSource.Stop();
+            m_AudioSource.volume = 0.4f;
         }
 
 
@@ -76,4 +84,6 @@ public class PlayerMovement : MonoBehaviour
         m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
         m_Rigidbody.MoveRotation(m_Rotation);
     }
+
+    
 }

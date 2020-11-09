@@ -8,7 +8,9 @@ public class Observer_Speed : MonoBehaviour
     bool m_IsPlayerInRange;
     public GameEnding gameEnding;
     public GlobalShit globalSC;
-    public Transform wpTrans;
+    public Transform wpTransform;
+    public Material light_Cone;
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -19,17 +21,27 @@ public class Observer_Speed : MonoBehaviour
         }
 
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform == player)
+        {
+            m_IsPlayerInRange = true;
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.transform == player)
         {
             m_IsPlayerInRange = false;
+            light_Cone.SetColor("_EmissionColor", Color.yellow);
+            print("Cambiando color de " + light_Cone.name + "a amarillo");
+
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-
+        light_Cone.SetColor("_EmissionColor", Color.green);
     }
 
     // Update is called once per frame
@@ -45,13 +57,22 @@ public class Observer_Speed : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    globalSC.SpeedChange(wpTrans);
+                    globalSC.SpeedChange(wpTransform, light_Cone);
+
+                    light_Cone.SetColor("_EmissionColor", Color.red);
+                    print("Cambiando color de " + light_Cone.name + " a red");
+
 
                 }
             }
         }
+       
+    }
+
+    public void ResetColor(Material l) 
+    {
+        l.SetColor("_EmissionColor", Color.green);
+        print("Cambiando color de "+ l.name + " a verde");
     }
     
-
-
 }

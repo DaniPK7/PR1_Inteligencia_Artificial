@@ -11,12 +11,15 @@ public class GlobalShit : MonoBehaviour
 
     public bool playerSeen;//si Soy
     public Transform gargyole;
+    private Observer_Speed gargSC;
+    private Material gargLight;
 
 
     // Start is called before the first frame update
     void Start()
     {
         timerON = false;
+        gargSC = FindObjectOfType<Observer_Speed>();
     }
 
     // Update is called once per frame
@@ -33,13 +36,14 @@ public class GlobalShit : MonoBehaviour
                 ghostSpeed = 1;
                 timerON = false;
                 playerSeen = false;
+                gargSC.ResetColor(gargLight);
             }
         }
     }
-    public void SpeedChange(Transform garg)
+    public void SpeedChange(Transform garg, Material light_Cone)
     {
         playerSeen = true;
-       
+        gargLight = light_Cone;
         gargyole = garg;
         ghostSpeed = 2;
         timeRemaining = 10f;

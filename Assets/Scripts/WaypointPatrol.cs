@@ -17,8 +17,9 @@ public class WaypointPatrol : MonoBehaviour
 
     public List<Node> finalPath;
     
-    //[SerializeField]
+    [SerializeField]
     public List<Transform> patrolPoints;
+
     int currentIndex;
 
     private Vector3 nodePosition;
@@ -52,7 +53,7 @@ public class WaypointPatrol : MonoBehaviour
     void Update()
     {
         speed = globalSC.ghostSpeed;
-        //print("v: "+ speed);
+        
 
         if (globalSC.playerSeen && !chasePlayer) 
         { 
@@ -76,9 +77,7 @@ public class WaypointPatrol : MonoBehaviour
 
         else if(goToStart)
         {
-            //return to the start point
-
-            
+            //return to the start point            
             SetWayPoint();
 
             if (finalPath[currentPosition] != finalPath[finalPath.Count - 1])
@@ -110,7 +109,7 @@ public class WaypointPatrol : MonoBehaviour
 
     private void SetWayPoint()
     {
-        if (Vector3.Distance(finalPath[currentPosition].position, patrolPoints[currentIndex ].position) < 1)
+        if (Vector3.Distance(finalPath[currentPosition].position, patrolPoints[currentIndex ].position) < 1f)
         {
             if (currentIndex + 1 > patrolPoints.Count-1) { currentIndex = 0; }
             else { currentIndex += 1; }
